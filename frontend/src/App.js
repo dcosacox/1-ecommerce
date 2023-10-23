@@ -7,7 +7,7 @@ import Badge from 'react-bootstrap/Badge';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Store } from './Store';
 import SinginScreen from './screens/SigninScreen';
 

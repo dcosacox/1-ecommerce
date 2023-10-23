@@ -5,7 +5,7 @@ import Rating from './Rating';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Store } from '../Store';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 function Product(props) {
   const { product } = props;
