@@ -72,33 +72,38 @@ export default function OrderScreen() {
       <Row>
         <Col md={8}>
           <Card className="mb-3">
-            <Card.Title>Shipping</Card.Title>
-            <Card.Text>
-              <strong>Name:</strong> {order.shippingAddress.fullName}
-              <br />
-              <strong>Address:</strong> {order.shippingAddress.address},
-              {order.shippingAddress.city},{order.shippingAddress.postalCode},
-              {order.shippingAddress.country}
-            </Card.Text>
-            {order.isDelivered ? (
-              <MessageBox variant="success">
-                Delivered at {order.deliveredAt}
-              </MessageBox>
-            ) : (
-              <MessageBox variant="danger">Not Delivered</MessageBox>
-            )}
+            <Card.Body>
+              <Card.Title>Shipping</Card.Title>
+              <Card.Text>
+                <strong>Name:</strong> {order.shippingAddress.fullName}
+                <br />
+                <strong>Address:</strong> {order.shippingAddress.address},
+                {order.shippingAddress.city},{order.shippingAddress.postalCode},
+                {order.shippingAddress.country}
+              </Card.Text>
+              {order.isDelivered ? (
+                <MessageBox variant="success">
+                  Delivered at {order.deliveredAt}
+                </MessageBox>
+              ) : (
+                <MessageBox variant="danger">Not Delivered</MessageBox>
+              )}
+            </Card.Body>
           </Card>
-
           <Card className="mb-3">
-            <Card.Title>Payment</Card.Title>
-            <Card.Text>
-              <strong>Method:</strong> {order.paymentMethod}
-            </Card.Text>
-            {order.isPaid ? (
-              <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
-            ) : (
-              <MessageBox variant="danger">Not Paid</MessageBox>
-            )}
+            <Card.Body>
+              <Card.Title>Payment</Card.Title>
+              <Card.Text>
+                <strong>Method:</strong> {order.paymentMethod}
+              </Card.Text>
+              {order.isPaid ? (
+                <MessageBox variant="success">
+                  Paid at {order.paidAt}
+                </MessageBox>
+              ) : (
+                <MessageBox variant="danger">Not Paid</MessageBox>
+              )}
+            </Card.Body>
           </Card>
           <Card className="mb-3">
             <Card.Body>
