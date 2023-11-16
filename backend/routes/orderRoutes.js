@@ -30,7 +30,6 @@ orderRouter.get(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({ user: req.user._id });
-    debugger;
     res.send(orders);
   })
 );

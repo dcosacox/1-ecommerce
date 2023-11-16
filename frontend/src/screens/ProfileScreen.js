@@ -35,29 +35,36 @@ export default function ProfileScreen() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axios.put(
-        '/api/users/profile',
-        {
-          name,
-          email,
-          password,
-        },
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({
-        type: 'UPDATE_SUCCESS',
-      });
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      localStorage.setItem('userInfo', JSON.stringify(data));
-      toast.success('User updated successfully');
-    } catch (err) {
+    if (password !== confirmPassword) {
       dispatch({
         type: 'UPDATE_FAIL',
       });
-      toast.error(getError(err));
+      toast.error('Passwords are note the same');
+    } else {
+      try {
+        const { data } = await axios.put(
+          '/api/users/profile',
+          {
+            name,
+            email,
+            password,
+          },
+          {
+            headers: { authorization: `Bearer ${userInfo.token}` },
+          }
+        );
+        dispatch({
+          type: 'UPDATE_SUCCESS',
+        });
+        ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        toast.success('User updated successfully');
+      } catch (err) {
+        dispatch({
+          type: 'UPDATE_FAIL',
+        });
+        toast.error(getError(err));
+      }
     }
   };
 
