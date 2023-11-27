@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 import axios from 'axios';
+import LoadingBox from '../components/LoadingBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,6 +35,10 @@ export default function ProfileScreen() {
   });
 
   const submitHandler = async (e) => {
+    if (password !== confirmPassword) {
+      toast.success("Passwords don't match");
+      return;
+    }
     e.preventDefault();
     try {
       const { data } = await axios.put(
@@ -97,9 +102,13 @@ export default function ProfileScreen() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required></Form.Control>
         </Form.Group>
-        <div class="mb-3">
-          <Button type="submit">Update</Button>
-        </div>
+        {loadingUpdate ? (
+          <LoadingBox />
+        ) : (
+          <div class="mb-3">
+            <Button type="submit">Update</Button>
+          </div>
+        )}
       </Form>
     </div>
   );
